@@ -15,8 +15,8 @@
 options:
 	
 	# LogSnag Settings
-	key: 43de4c1eeaac954aacf3767b79773799
-	default_project: minematic
+	key: *insert_api_key*
+	default_project: *insert_project*
 
 	# Misc Settings
 	minecraft_log_message: &8[&fLogSnag&8] &f%{_body}%
@@ -44,5 +44,4 @@ function logsnag(event: string, desc: string, channel: string, notify: boolean =
 			{@minecraft_log} is true
 			set {_body} to {_skript-web-reply}
 			message "{@minecraft_log_message}" to console
-			message "{@minecraft_log_message}" to players
 	execute last post request
