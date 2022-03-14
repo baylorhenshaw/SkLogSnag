@@ -14,8 +14,55 @@
 # Options
 options:
 	
-	# Style Settings
-	prefix: &8[&fLogSnag&8] &f
+	# LogSnag Settings
+	key: *insert_api_key*
+	default_project: *insert_project*
 
-	# Debug
+	# Misc Settings
+	minecraft_log_message: &8[&fLogSnag&8] [&6%{_code}%&8] &f%{_body}%
 	minecraft_log: true
+
+#
+#	API Functions
+#
+
+# Horrifying Function to Account for Reqn's Outdatedness
+function logsnag(event: string, desc: string, channel: string, notify: boolean = false, icon: string = "🌎", project: string = "{@default_project}"):
+	
+	# Queue system because local variables dont work. I'm Crying.
+	while {logsnag::queue} > 1:
+		wait 5 ticks
+
+	# Accounting for Reqn Local Variable Issues
+	add 1 to {logsnag::queue}
+	add 1 to {logsnag::total}
+	set {logsnag::cache::%{logsnag::total}%::event} to {_event}
+	set {logsnag::cache::%{logsnag::total}%::desc} to {_desc}
+	set {logsnag::cache::%{logsnag::total}%::channel} to {_channel}
+	set {logsnag::cache::%{logsnag::total}%::notify} to {_notify}
+	set {logsnag::cache::%{logsnag::total}%::project} to {_project}
+	set {logsnag::cache::%{logsnag::total}%::icon} to {_icon}
+
+	# The horrifying line.
+	send a "post" request to "https://api.logsnag.com/v1/log" with the headers "Authorization: Bearer {@key}", and "Content-Type: application/json" and the body "{""event"": ""%{logsnag::cache::%{logsnag::total}%::event}%"", ""project"": ""%{logsnag::cache::%{logsnag::total}%::project}%"",""channel"": ""%{logsnag::cache::%{logsnag::total}%::channel}%"",""description"": ""%{logsnag::cache::%{logsnag::total}%::desc}%"",""notify"": %{logsnag::cache::%{logsnag::total}%::notify}%,""icon"": ""%{logsnag::cache::%{logsnag::total}%::icon}%""}"
+
+	# MORE LOGS
+	if {@minecraft_log} is true:
+		set {_resp} to the last http response
+		set {_code} to {_resp}'s status code
+		set {_body} to {_resp}'s body
+		message "{@minecraft_log_message}" to console
+		message "{@minecraft_log_message}" to players
+
+	# Remove from queue
+	delete {logsnag::cache::%{logsnag::total}%::*}
+	remove 1 from {logsnag::queue}
+
+#
+#	Events
+#
+
+# Load & Delete Cache
+on load:
+	
+	delete {logsnag::*}
