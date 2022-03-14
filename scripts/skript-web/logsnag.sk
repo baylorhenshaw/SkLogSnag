@@ -1,0 +1,48 @@
+#
+#	Skript LogSnag 1.0.0
+#	
+#	Created for public use by Baylor Henshaw
+#	Copyright © 2021 Baylor Henshaw <baylor@henshaw.me>
+#
+#	Written by Baylor Henshaw (https://baezor.com/)
+#
+
+#
+#	Configuration
+#
+
+# Options
+options:
+	
+	# LogSnag Settings
+	key: 43de4c1eeaac954aacf3767b79773799
+	default_project: minematic
+
+	# Misc Settings
+	minecraft_log_message: &8[&fLogSnag&8] &f%{_body}%
+	minecraft_log: true
+
+#
+#	API Functions
+#
+
+# Horrifying Function to Account for Reqn's Outdatedness
+function logsnag(event: string, desc: string, channel: string, notify: boolean = false, icon: string = "🌎", project: string = "{@default_project}"):
+	create post request:
+		web-url: "https://api.logsnag.com/v1/log"
+		headers:
+			"Authorization": "Bearer {@key}" 
+			"Content-Type": "application/json"
+		body:
+			"event": {_event}
+			"channel": {_channel}
+			"project": {_project}
+			"description": {_desc}
+			"notify": {_notify}
+			"icon": {_icon}
+		execute:
+			{@minecraft_log} is true
+			set {_body} to {_skript-web-reply}
+			message "{@minecraft_log_message}" to console
+			message "{@minecraft_log_message}" to players
+	execute last post request
