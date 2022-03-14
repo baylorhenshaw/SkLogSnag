@@ -52,7 +52,6 @@ function logsnag(event: string, desc: string, channel: string, notify: boolean =
 		set {_code} to {_resp}'s status code
 		set {_body} to {_resp}'s body
 		message "{@minecraft_log_message}" to console
-		message "{@minecraft_log_message}" to players
 
 	# Remove from queue
 	delete {logsnag::cache::%{logsnag::total}%::*}
