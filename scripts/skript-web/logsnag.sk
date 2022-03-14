@@ -26,7 +26,7 @@ options:
 #	API Functions
 #
 
-# Horrifying Function to Account for Reqn's Outdatedness
+# Logsnag Function
 function logsnag(event: string, desc: string, channel: string, notify: boolean = false, icon: string = "🌎", project: string = "{@default_project}"):
 	create post request:
 		web-url: "https://api.logsnag.com/v1/log"
