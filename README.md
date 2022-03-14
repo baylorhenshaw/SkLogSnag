@@ -16,6 +16,6 @@ logsnag(event, description, channel, ?notify, ?icon, ?project)
 ```
 #### Examples
 ```hs
-logsnag("Server Online", "The server epic-server-01 is not online!" "status")
-logsnag("Intense Lag", "The server epic-server-01 is at 3 tps!" "status", "true", "🔥")
+logsnag("Server Online", "The server epic-server-01 is not online!", "status")
+logsnag("Intense Lag", "The server epic-server-01 is at 3 tps!", "status", "true", "🔥")
 ```
