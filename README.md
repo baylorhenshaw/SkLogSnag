@@ -3,6 +3,10 @@
 # SkLogSnag
 SkriptLang integration with [LogSnag](https://logsnag.com/). Track player activity, payments, reports, and more with [LogSnag](https://logsnag.com/).
 
+# Dependencies
+- [SkriptLang](https://github.com/SkriptLang/Skript/releases)
+- [Reqn](https://forums.skunity.com/resources/reqn.95/)
+
 # Documentation
 ### Log Function
 #### Usage
