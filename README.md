@@ -1,7 +1,7 @@
 [![Issues](https://img.shields.io/github/issues/Minematic/SkLogSnag)](https://github.com/Baezor1/Shop/issues) ![Forks](https://img.shields.io/github/forks/Minematic/SkLogSnag) ![Stars](https://img.shields.io/github/stars/Minematic/SkLogSnag)
 
 # SkLogSnag
-SkriptLang integration with [LogSnag](https://logsnag.com/). Track player activity, payments, reports, and more with [LogSnag](https://logsnag.com/). If you have access to the addon `skript-web`, you can use the version for that found in the `/scripts/` folder.
+SkriptLang integration with [LogSnag](https://logsnag.com/). Track player activity, payments, reports, and more with [LogSnag](https://logsnag.com/). If you have access to the addon `skript-web`, you can use the version for that found in the `/scripts/skript-web/` folder of the repo.
 
 # Dependencies
 - [SkriptLang](https://github.com/SkriptLang/Skript/releases)
